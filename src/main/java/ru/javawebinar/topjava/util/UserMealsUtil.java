@@ -58,7 +58,7 @@ public class UserMealsUtil {
         return filtered;
     }
 
-    /*public static List<UserMealWithExcess> filteredByStreams(List<UserMeal> meals, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
+    public static List<UserMealWithExcess> filteredByStreams(List<UserMeal> meals, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
 
         Map<LocalDate, Integer> mapWithCaloriesPerDay = new HashMap<>();
 
@@ -70,5 +70,5 @@ public class UserMealsUtil {
 
         // TODO Implement by streams
         return null;
-    }*/
+    }
 }
