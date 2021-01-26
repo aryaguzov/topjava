@@ -60,14 +60,6 @@ public class UserMealsUtil {
 
     public static List<UserMealWithExcess> filteredByStreams(List<UserMeal> meals, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
 
-        Map<LocalDate, Integer> mapWithCaloriesPerDay = new HashMap<>();
-
-        meals.stream().forEach(meal ->
-                mapWithCaloriesPerDay.merge(LocalDate.from(meal.getDateTime()), meal.getCalories(),
-                        Integer::sum));
-
-
-
         // TODO Implement by streams
         return null;
     }
