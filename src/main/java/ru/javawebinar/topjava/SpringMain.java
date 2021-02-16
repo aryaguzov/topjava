@@ -2,17 +2,17 @@ package ru.javawebinar.topjava;
 
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.model.Role;
 import ru.javawebinar.topjava.model.User;
+import ru.javawebinar.topjava.to.MealTo;
 import ru.javawebinar.topjava.web.meal.MealRestController;
 import ru.javawebinar.topjava.web.user.AdminRestController;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
 import java.util.Arrays;
+import java.util.List;
 
 public class SpringMain {
     public static void main(String[] args) {
@@ -23,12 +23,12 @@ public class SpringMain {
             adminUserController.create(new User(null, "userName", "email@mail.ru", "password", Role.ADMIN));
 
             MealRestController mealRestController = appCtx.getBean(MealRestController.class);
-            mealRestController.create(new Meal(LocalDateTime.of(2021, Month.FEBRUARY, 14, 12, 0), "Lunch", 1000));
             mealRestController.getAll();
-            mealRestController.getAllFiltered(LocalDate.of(2020, 1, 30),
-                    LocalTime.of(7, 0),
-                    LocalDate.of(2020, 1, 31),
-                    LocalTime.of(12, 0));
+
+            List<MealTo> filtered = mealRestController.getAllFiltered
+                    (LocalDate.of(2021, Month.FEBRUARY, 16), LocalTime.of(11, 53),
+                            LocalDate.of(2021, Month.FEBRUARY, 17), LocalTime.of(13, 0));
+            filtered.forEach(System.out::println);
         }
     }
 }
