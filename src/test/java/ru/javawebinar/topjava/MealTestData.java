@@ -15,19 +15,19 @@ public class MealTestData {
 
     public static final int NOT_FOUND_MEAL = 20;
 
-    public static final Meal meal = new Meal(MEAL_ID, LocalDateTime.of(2021, Month.FEBRUARY, 18, 12, 0), "Обед", 1000);
-    public static final Meal meal1 = new Meal(MEAL_ID + 1, LocalDateTime.of(2021, Month.FEBRUARY, 18, 18, 0), "Ужин", 250);
-    public static final Meal meal2 = new Meal(MEAL_ID + 2, LocalDateTime.of(2021, Month.FEBRUARY, 19, 8, 0), "Завтрак", 200);
-    public static final Meal meal3 = new Meal(MEAL_ID + 3, LocalDateTime.of(2021, Month.FEBRUARY, 19, 8, 30), "Завтрак", 200);
-    public static final Meal meal4 = new Meal(MEAL_ID + 4, LocalDateTime.of(2021, Month.FEBRUARY, 20, 10, 0), "Ужин", 200);
-    public static final Meal meal5 = new Meal(MEAL_ID + 5, LocalDateTime.of(2021, Month.FEBRUARY, 20, 16, 0), "Полдник", 200);
+    public static final Meal meal1User = new Meal(MEAL_ID, LocalDateTime.of(2021, Month.FEBRUARY, 18, 12, 0), "Обед", 1000);
+    public static final Meal meal1Admin = new Meal(MEAL_ID + 1, LocalDateTime.of(2021, Month.FEBRUARY, 18, 18, 0), "Ужин", 250);
+    public static final Meal meal2User = new Meal(MEAL_ID + 2, LocalDateTime.of(2021, Month.FEBRUARY, 19, 8, 0), "Завтрак", 200);
+    public static final Meal meal2Admin = new Meal(MEAL_ID + 3, LocalDateTime.of(2021, Month.FEBRUARY, 19, 8, 30), "Завтрак", 200);
+    public static final Meal meal3User = new Meal(MEAL_ID + 4, LocalDateTime.of(2021, Month.FEBRUARY, 20, 10, 0), "Ужин", 200);
+    public static final Meal meal3Admin = new Meal(MEAL_ID + 5, LocalDateTime.of(2021, Month.FEBRUARY, 20, 16, 0), "Полдник", 200);
 
     public static Meal getNew() {
         return new Meal(null, LocalDateTime.of(2000, Month.APRIL, 12, 0, 0), "some meal", 1900);
     }
 
     public static Meal getToBeUpdated() {
-        Meal mealToBeUpdated = new Meal(meal.getId(), meal.getDateTime(), meal.getDescription(), meal.getCalories());
+        Meal mealToBeUpdated = new Meal(meal1User.getId(), meal1User.getDateTime(), meal1User.getDescription(), meal1User.getCalories());
         mealToBeUpdated.setDateTime(LocalDateTime.of(1990, Month.APRIL, 12, 2, 30));
         mealToBeUpdated.setDescription("Some night meal");
         mealToBeUpdated.setCalories(1500);
@@ -35,7 +35,7 @@ public class MealTestData {
     }
 
     public static List<Meal> getBetween() {
-        return Arrays.asList(meal2, meal4);
+        return Arrays.asList(meal2User, meal3User);
     }
 
     public static void assertMatch(Meal actual, Meal expected) {

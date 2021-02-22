@@ -38,12 +38,12 @@ public class MealServiceTest {
     }
 
     @Autowired
-    MealService mealService;
+    private MealService mealService;
 
     @Test
     public void get() {
         Meal mealToBeGotten = mealService.get(MEAL_ID, USER_ID);
-        assertMatch(mealToBeGotten, meal);
+        assertMatch(mealToBeGotten, meal1User);
     }
 
     @Test
@@ -84,7 +84,7 @@ public class MealServiceTest {
     @Test
     public void getAll() {
         List<Meal> actual = mealService.getAll(USER_ID);
-        List<Meal> expected = Arrays.asList(meal, meal2, meal4);
+        List<Meal> expected = Arrays.asList(meal3User, meal2User, meal1User);
         assertMatch(actual, expected);
     }
 
@@ -97,7 +97,7 @@ public class MealServiceTest {
 
     @Test
     public void updateIfNotAnOwner() {
-        assertThrows(NotFoundException.class, () -> mealService.update(meal, ADMIN_ID));
+        assertThrows(NotFoundException.class, () -> mealService.update(meal1User, ADMIN_ID));
     }
 
     @Test
