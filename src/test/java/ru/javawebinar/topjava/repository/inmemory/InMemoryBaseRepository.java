@@ -17,6 +17,7 @@ public class InMemoryBaseRepository<T extends AbstractBaseEntity> {
     final Map<Integer, T> map = new ConcurrentHashMap<>();
 
     public T save(T entity) {
+        Objects.requireNonNull(entity, "Entity must not be null");
         if (entity.isNew()) {
             entity.setId(counter.getAndIncrement());
             map.put(entity.getId(), entity);
@@ -38,6 +39,7 @@ public class InMemoryBaseRepository<T extends AbstractBaseEntity> {
     }
 
     void put(T entity) {
-        map.put(entity.getId(), entity);
+        Objects.requireNonNull(entity, "Entity must not be null");
+        map.put(entity.id(), entity);
     }
 }
