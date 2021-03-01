@@ -1,7 +1,10 @@
 package ru.javawebinar.topjava.service;
 
-import org.junit.Test;
+import org.junit.*;
+import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.test.context.ContextConfiguration;
@@ -13,6 +16,8 @@ import ru.javawebinar.topjava.util.exception.NotFoundException;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.assertThrows;
 import static ru.javawebinar.topjava.MealTestData.*;
@@ -26,6 +31,32 @@ import static ru.javawebinar.topjava.UserTestData.USER_ID;
 @RunWith(SpringRunner.class)
 @Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
 public class MealServiceTest {
+    private static final Logger log = LoggerFactory.getLogger(MealServiceTest.class);
+    private static long startExecutionTime;
+    private static Map<String, Long> testsExecutionTime;
+
+    @Rule
+    public TestName testName = new TestName();
+
+    @BeforeClass
+    public static void startTestsExecutionTime() {
+        testsExecutionTime = new HashMap<>();
+    }
+
+    @AfterClass
+    public static void endTestsExecution() {
+        logInfoTestsExecutionTime();
+    }
+
+    @Before
+    public void start() {
+        startExecutionTime = System.currentTimeMillis();
+    }
+
+    @After
+    public void end() {
+        logInfo();
+    }
 
     @Autowired
     private MealService service;
@@ -108,5 +139,16 @@ public class MealServiceTest {
     @Test
     public void getBetweenWithNullDates() {
         MEAL_MATCHER.assertMatch(service.getBetweenInclusive(null, null, USER_ID), meals);
+    }
+
+    private void logInfo() {
+        String name = testName.getMethodName();
+        long endExecutionTime = System.currentTimeMillis() - startExecutionTime;
+        log.info(String.format("Test %s() took %d ms.", name, endExecutionTime));
+        testsExecutionTime.put(name, endExecutionTime);
+    }
+
+    private static void logInfoTestsExecutionTime() {
+        testsExecutionTime.forEach((k, v) -> log.info(String.format("%s() - %d ms.", k, v)));
     }
 }
