@@ -39,23 +39,34 @@ public class MealServiceTest {
     public TestName testName = new TestName();
 
     @BeforeClass
-    public static void startTestsExecutionTime() {
+    public static void startAllTestsExecutionTime() {
         testsExecutionTime = new HashMap<>();
     }
 
     @AfterClass
-    public static void endTestsExecution() {
+    public static void endAllTestsExecutionTime() {
         logInfoTestsExecutionTime();
     }
 
     @Before
     public void start() {
-        startExecutionTime = System.currentTimeMillis();
+        startExecutionTime = System.nanoTime();
     }
 
     @After
     public void end() {
         logInfo();
+    }
+
+    private void logInfo() {
+        String name = testName.getMethodName();
+        long endExecutionTime = System.nanoTime() - startExecutionTime;
+        log.info(String.format("Test %s() took %d ms.", name, endExecutionTime));
+        testsExecutionTime.put(name, endExecutionTime);
+    }
+
+    private static void logInfoTestsExecutionTime() {
+        testsExecutionTime.forEach((k, v) -> log.info(String.format("%s() - %d ms.", k, v)));
     }
 
     @Autowired
@@ -139,16 +150,5 @@ public class MealServiceTest {
     @Test
     public void getBetweenWithNullDates() {
         MEAL_MATCHER.assertMatch(service.getBetweenInclusive(null, null, USER_ID), meals);
-    }
-
-    private void logInfo() {
-        String name = testName.getMethodName();
-        long endExecutionTime = System.currentTimeMillis() - startExecutionTime;
-        log.info(String.format("Test %s() took %d ms.", name, endExecutionTime));
-        testsExecutionTime.put(name, endExecutionTime);
-    }
-
-    private static void logInfoTestsExecutionTime() {
-        testsExecutionTime.forEach((k, v) -> log.info(String.format("%s() - %d ms.", k, v)));
     }
 }
