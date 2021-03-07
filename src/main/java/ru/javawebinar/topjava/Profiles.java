@@ -34,11 +34,4 @@ public class Profiles {
             return new String[]{getActiveDbProfile()};
         }
     }
-
-    public static class ActiveRepositoryProfileResolver implements ActiveProfilesResolver {
-        @Override
-        public @NonNull String[] resolve(@NonNull Class<?> aClass) {
-            return new String[]{REPOSITORY_IMPLEMENTATION, getActiveDbProfile()};
-        }
-    }
 }
