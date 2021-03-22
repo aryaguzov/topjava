@@ -5,18 +5,18 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <html>
-<jsp:include page="fragments/headTag.jsp"/>
-<jsp:include page="fragments/bodyHeader.jsp"/>
 <head>
+    <jsp:include page="fragments/headTag.jsp"/>
     <title>Meals</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<jsp:include page="fragments/bodyHeader.jsp"/>
 <section>
     <h3><a href="index.jsp"><spring:message code="app.home"/></a></h3>
     <hr/>
     <h2><spring:message code="meal.title"/></h2>
-    <form method="get" action="${pageContext.request.contextPath}/meals/filter">
+    <form method="get" action="meals/filter">
         <input type="hidden" name="action" value="filter">
         <dl>
             <dt><spring:message code="meal.fromdate"/></dt>

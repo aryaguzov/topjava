@@ -3,13 +3,13 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <html>
-<jsp:include page="fragments/headTag.jsp"/>
-<jsp:include page="fragments/bodyHeader.jsp"/>
 <head>
+    <jsp:include page="fragments/headTag.jsp"/>
     <title>Meal</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<jsp:include page="fragments/bodyHeader.jsp"/>
 <section>
     <h3><a href="index.html"><spring:message code="app.home"/></a></h3>
     <hr>

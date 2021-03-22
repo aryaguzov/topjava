@@ -17,7 +17,7 @@ import static ru.javawebinar.topjava.util.DateTimeUtil.parseLocalTime;
 
 @RequestMapping("/meals")
 @Controller
-public class JspMealController extends AbstractMealRestController {
+public class JspMealController extends AbstractMealController {
 
     public JspMealController(MealService service) {
         super(service);
