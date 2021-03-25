@@ -18,6 +18,7 @@
 
         <spring.version>5.3.4</spring.version>
         <spring-data-jpa.version>2.4.5</spring-data-jpa.version>
+        <jackson-json.version>2.12.2</jackson-json.version>
         <tomcat.version>9.0.43</tomcat.version>
 
         <!-- Logging -->
@@ -29,7 +30,7 @@
         <!--    Tests  -->
         <junit.jupiter.version>5.7.1</junit.jupiter.version>
         <assertj.version>3.19.0</assertj.version>
-        <hamcrest.version>1.3</hamcrest.version>
+        <hamcrest.version>2.2</hamcrest.version>
 
         <!-- Hibernate -->
         <hibernate.version>5.4.28.Final</hibernate.version>
@@ -157,19 +158,11 @@
             <version>${hibernate.version}</version>
         </dependency>
 
-         <!--http://hibernate.org/validator/documentation/getting-started/#unified-expression-language-el-->
-         <dependency>
-             <groupId>org.glassfish</groupId>
-             <artifactId>javax.el</artifactId>
-             <version>${javax-el.version}</version>
-             <scope>provided</scope>
-         </dependency>
-
-        <!--Web-->
+        <!--http://hibernate.org/validator/documentation/getting-started/#unified-expression-language-el-->
         <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-servlet-api</artifactId>
-            <version>${tomcat.version}</version>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.el</artifactId>
+            <version>${javax-el.version}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -199,6 +192,14 @@
             <version>2.4.0-b180830.0438</version>
         </dependency>
 
+        <!--Web-->
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-servlet-api</artifactId>
+            <version>${tomcat.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
@@ -210,6 +211,23 @@
             <artifactId>spring-webmvc</artifactId>
         </dependency>
 
+        <!--JSON-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-json.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-hibernate5</artifactId>
+            <version>${jackson-json.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>${jackson-json.version}</version>
+        </dependency>
+
         <!--Test-->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -219,7 +237,7 @@
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-all</artifactId>
+            <artifactId>hamcrest-core</artifactId>
             <version>${hamcrest.version}</version>
             <scope>test</scope>
         </dependency>
