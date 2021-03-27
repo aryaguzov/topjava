@@ -1,22 +1,20 @@
 package ru.javawebinar.topjava.model;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.*;
+import org.hibernate.validator.constraints.Range;
+import org.springframework.util.CollectionUtils;
+
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import org.hibernate.annotations.*;
-
-import org.hibernate.annotations.Cache;
-import org.hibernate.validator.constraints.Range;
-import org.springframework.util.CollectionUtils;
-
-import javax.persistence.*;
 import java.util.*;
 
 import static ru.javawebinar.topjava.util.MealsUtil.DEFAULT_CALORIES_PER_DAY;
