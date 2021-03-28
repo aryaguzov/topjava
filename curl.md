@@ -11,4 +11,4 @@
 >> * **Update:** 
               *curl -X PUT localhost:8090/topjava/rest/meals/{id} -H 'Content-type:application/json' -d '{"dateTime":"2021-01-31T22:00:00","description":"Update","calories":50}'*
 >> * **Get between:**
-              *curl "localhost:8090/topjava/rest/meals/filter?startDate=2020-01-30&startTime=08:30:30&endDate=2020-01-30&endTime=22:30:30" (for macOs you have to use quotes with URL)*
+              *curl "localhost:8090/topjava/rest/meals/filter?startDate=2020-01-30&startTime=08:30:30&endDate=2020-01-30&endTime=22:30:30" (for macOs you have to use quotes if URL containes &)*
