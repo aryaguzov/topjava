@@ -1,4 +1,4 @@
-package ru.javawebinar.topjava.web.formatters;
+package ru.javawebinar.topjava.web.formatter;
 
 import org.springframework.format.Formatter;
 import ru.javawebinar.topjava.util.DateTimeUtil;
