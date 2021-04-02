@@ -22,6 +22,7 @@ function deleteRow(id) {
         type: "DELETE"
     }).done(function () {
         updateTable();
+        successNoty("Deleted");
     });
 }
 
@@ -40,5 +41,6 @@ function save() {
     }).done(function () {
         $("#editRow").modal("hide");
         updateTable();
+        successNoty("Saved");
     });
 }
