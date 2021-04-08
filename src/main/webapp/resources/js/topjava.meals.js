@@ -12,6 +12,11 @@ const ctx = {
     }
 }
 
+function clearFilter() {
+    $("#filter")[0].reset();
+    $.get("profile/meals/", updateTableByData);
+}
+
 $(function () {
     makeEditable(
         $("#datatable").DataTable({
