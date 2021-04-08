@@ -19,6 +19,12 @@ public class AdminUIController extends AbstractUserController {
     }
 
     @Override
+    @GetMapping("/{id}")
+    public User get(@PathVariable int id) {
+        return super.get(id);
+    }
+
+    @Override
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable int id) {
