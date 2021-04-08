@@ -27,8 +27,12 @@ public class AdminUIController extends AbstractUserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void create(UserTo userTo) {
-        super.create(userTo);
+    public void createOrUpdate(UserTo userTo) {
+        if (userTo.isNew()) {
+            super.create(userTo);
+        } else {
+            super.update(userTo, userTo.id());
+        }
     }
 
     @Override
