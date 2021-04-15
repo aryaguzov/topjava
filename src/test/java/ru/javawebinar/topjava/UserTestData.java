@@ -2,6 +2,7 @@ package ru.javawebinar.topjava;
 
 import ru.javawebinar.topjava.model.Role;
 import ru.javawebinar.topjava.model.User;
+import ru.javawebinar.topjava.web.json.JsonUtil;
 
 import java.util.Collections;
 import java.util.Date;
@@ -12,12 +13,12 @@ import static ru.javawebinar.topjava.MealTestData.*;
 import static ru.javawebinar.topjava.model.AbstractBaseEntity.START_SEQ;
 
 public class UserTestData {
-    public static final TestMatcher<User> USER_MATCHER = TestMatcher.usingIgnoringFieldsComparator(User.class, "registered", "meals");
+    public static final TestMatcher<User> USER_MATCHER = TestMatcher.usingIgnoringFieldsComparator(User.class, "registered", "meals", "password");
     public static TestMatcher<User> USER_WITH_MEALS_MATCHER =
             TestMatcher.usingAssertions(User.class,
 //     No need use ignoringAllOverriddenEquals, see https://assertj.github.io/doc/#breaking-changes
                     (a, e) -> assertThat(a).usingRecursiveComparison()
-                            .ignoringFields("registered", "meals.user").isEqualTo(e),
+                            .ignoringFields("registered", "meals.user", "password").isEqualTo(e),
                     (a, e) -> {
                         throw new UnsupportedOperationException();
                     });
@@ -47,5 +48,9 @@ public class UserTestData {
         updated.setEnabled(false);
         updated.setRoles(Collections.singletonList(Role.ADMIN));
         return updated;
+    }
+
+    public static String jsonWithPassword(User user, String passw) {
+        return JsonUtil.writeAdditionProps(user, "password", passw);
     }
 }
