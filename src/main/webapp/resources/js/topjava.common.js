@@ -46,7 +46,6 @@ function updateTableByData(data) {
 }
 
 function save() {
-    const form = $("#detailsForm");
     $.ajax({
         type: "POST",
         url: ctx.ajaxUrl,
@@ -83,7 +82,8 @@ function failNoty(jqXHR) {
         text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;" + i18n["common.errorStatus"] + ": " + jqXHR.status + (jqXHR.responseJSON ? "<br>" + jqXHR.responseJSON : ""),
         type: "error",
         layout: "bottomRight"
-    }).show();
+    });
+    failedNote.show();
 }
 
 function renderEditBtn(data, type, row) {
