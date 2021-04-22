@@ -14,7 +14,7 @@
             <div class="error">${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</div>
         </c:if>
         <c:if test="${not empty param.message}">
-            <div class="message"><spring:message code="${param.message}"/></div>
+            <div class="message"><spring:message code="${param.message}" text=""/></div>
         </c:if>
         <sec:authorize access="isAnonymous()">
             <div class="pt-2">
