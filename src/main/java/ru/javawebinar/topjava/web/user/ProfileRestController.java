@@ -20,13 +20,13 @@ public class ProfileRestController extends AbstractUserController {
     static final String REST_URL = "/rest/profile";
 
     @GetMapping
-    public User get(@AuthenticationPrincipal AuthorizedUser authUser) {
+    public User get(@AuthenticationPrincipal @ApiIgnore AuthorizedUser authUser) {
         return super.get(authUser.getId());
     }
 
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@AuthenticationPrincipal AuthorizedUser authUser) {
+    public void delete(@AuthenticationPrincipal @ApiIgnore AuthorizedUser authUser) {
         super.delete(authUser.getId());
     }
 
@@ -41,7 +41,7 @@ public class ProfileRestController extends AbstractUserController {
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@RequestBody UserTo userTo, @AuthenticationPrincipal AuthorizedUser authUser) throws BindException {
+    public void update(@RequestBody UserTo userTo, @AuthenticationPrincipal @ApiIgnore AuthorizedUser authUser) throws BindException {
         validateBeforeUpdate(userTo, authUser.getId());
         super.update(userTo, authUser.getId());
     }
@@ -52,7 +52,7 @@ public class ProfileRestController extends AbstractUserController {
     }
 
     @GetMapping("/with-meals")
-    public User getWithMeals(@AuthenticationPrincipal AuthorizedUser authUser) {
+    public User getWithMeals(@AuthenticationPrincipal @ApiIgnore AuthorizedUser authUser) {
         return super.getWithMeals(authUser.getId());
     }
 }
